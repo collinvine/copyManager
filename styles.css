@@ -1,0 +1,128 @@
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  margin-top: 200px;
+  width: 600px;
+  height: 400px;
+  border: solid rgba(250, 128, 114, 0.5);
+}
+
+.input {
+  width: inherit;
+}
+
+input {
+  margin-top: 10px;
+  width: inherit;
+  height: 27px;
+  text-overflow: ellipsis;
+  padding-left: 10px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: inherit;
+  margin-top: 24px;
+}
+
+/* FIRST ATTEMPT */
+
+/* .item {
+  flex: 1;
+  width: inherit;
+  min-height: 27px;
+  padding: 10px 20px 10px 0;
+  display: flex;
+}
+
+.content {
+  width: 80%;
+  margin-left: 30px;
+}
+
+.li {
+  display: inline;
+}
+
+.drag {
+  position: absolute;
+  left: inherit;
+  cursor: move;
+}
+
+.icon {
+  display: none;
+  margin: 0 8px;
+}
+
+.item:hover {
+  background-color: #eaeaea;
+}
+
+.item:hover .icon {
+  display: inline;
+} */
+
+/* SECOND ATTEMPT */
+
+.item {
+    flex: 1;
+    width: inherit;
+    min-height: 27px;
+    padding: 5px 0;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.drag {
+    position: absolute;
+    left: 0;
+    cursor: move;
+    margin: 0 8px;
+    padding-top: 2px;
+    visibility: hidden;
+}
+
+.content {
+    width: 80%;
+    margin-left: 32px;
+}
+
+.icon {
+    display: none;
+    margin: 0 8px;
+    padding-top: 2px;
+}
+
+.push {
+    margin-left: auto;
+}
+
+.item:hover {
+    background-color: #eaeaea;
+}
+
+.item:hover .drag {
+    visibility: visible;
+}
+
+.item:hover .icon {
+    display: inherit;
+}
