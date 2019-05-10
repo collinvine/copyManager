@@ -41,6 +41,19 @@ function copy(e) {
   console.log(getValue);
 }
 
+function deleteListener() {
+  const getDelete = document.querySelectorAll('.delete');
+  if (getDelete.length > 1){
+    getDelete.forEach(e => e.addEventListener('click', remove));
+  } else {
+    getDelete[0].addEventListener('click', remove)
+  };
+}
+
+function remove(e) {
+  e.target.parentElement.remove();
+}
+
 // add pasted item to list
 const addItem = function() {
   const enteredText = getInput.value;
@@ -57,4 +70,5 @@ const addItem = function() {
   getList.insertBefore(contentContainer, getChild);
 
   copyListener();
+  deleteListener();
 };
