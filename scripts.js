@@ -26,27 +26,27 @@ getInput.addEventListener('keydown', function() {
 
 // add event listeners
 function copyListener() {
-  const getCopy = document.querySelectorAll('.copy');
-  if (getCopy.length > 1){
-    getCopy.forEach(e => e.addEventListener('click', copy));
+  const allCopyIcons = document.querySelectorAll('.copy');
+  if (allCopyIcons.length > 1){
+    allCopyIcons.forEach(e => e.addEventListener('click', copy));
   } else {
-    getCopy[0].addEventListener('click', copy)
+    allCopyIcons[0].addEventListener('click', copy)
   };
 }
 
 function copy(e) {
-  const getValue = e.target.previousSibling.innerText;
-  getValue.select();
+  const itemText = e.target.previousSibling.innerText;
+  itemText.select();
   document.execCommand("copy");
-  console.log(getValue);
+  console.log(itemText);
 }
 
 function deleteListener() {
-  const getDelete = document.querySelectorAll('.delete');
-  if (getDelete.length > 1){
-    getDelete.forEach(e => e.addEventListener('click', remove));
+  const allDeleteIcons = document.querySelectorAll('.delete');
+  if (allDeleteIcons.length > 1){
+    allDeleteIcons.forEach(e => e.addEventListener('click', remove));
   } else {
-    getDelete[0].addEventListener('click', remove)
+    allDeleteIcons[0].addEventListener('click', remove)
   };
 }
 

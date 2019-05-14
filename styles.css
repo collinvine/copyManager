@@ -41,46 +41,6 @@ input {
   margin-top: 24px;
 }
 
-/* FIRST ATTEMPT */
-
-/* .item {
-  flex: 1;
-  width: inherit;
-  min-height: 27px;
-  padding: 10px 20px 10px 0;
-  display: flex;
-}
-
-.content {
-  width: 80%;
-  margin-left: 30px;
-}
-
-.li {
-  display: inline;
-}
-
-.drag {
-  position: absolute;
-  left: inherit;
-  cursor: move;
-}
-
-.icon {
-  display: none;
-  margin: 0 8px;
-}
-
-.item:hover {
-  background-color: #eaeaea;
-}
-
-.item:hover .icon {
-  display: inline;
-} */
-
-/* SECOND ATTEMPT */
-
 .item {
     flex: 1;
     width: inherit;
