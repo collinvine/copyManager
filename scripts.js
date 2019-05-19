@@ -1,6 +1,6 @@
 // grab elements
-const getInput = document.querySelector('input');
-const getList = document.querySelector('.list');
+const inputElement = document.querySelector('input');
+const listElement = document.querySelector('.list');
 
 const addMove = document.createElement('i');
 const addContent = document.createElement('div');
@@ -13,19 +13,19 @@ addCopy.classList.add("fas", "fa-copy", "copy", "icon", "push");
 addDelete.classList.add("fas", "fa-times", "delete", "icon", "edit");
 
 // focus curson in input on load
-window.onload = getInput.focus();
+window.onload = inputElement.focus();
 
 // add return key listen and call addItem function
-getInput.addEventListener('keydown', function() {
+inputElement.addEventListener('keydown', function() {
   if (event.code == 'Enter') {
     addItem();
-    getInput.value = "";
-    getInput.focus();
+    inputElement.value = "";
+    inputElement.focus();
   }
 });
 
 // add event listeners
-function copyListener() {
+const copyListener = function() {
   const allCopyIcons = document.querySelectorAll('.copy');
   if (allCopyIcons.length > 1){
     allCopyIcons.forEach(e => e.addEventListener('click', copy));
@@ -34,14 +34,24 @@ function copyListener() {
   };
 }
 
-function copy(e) {
-  const itemText = e.target.previousSibling.innerText;
+const copyListenerTwo = function(addCopy) {
+    console.log(addCopy);
+    addCopy.addEventListener("click", copy)
+}
+
+const deleteListenerTwo = function(addDelete) {
+    console.log(addDelete);
+    addDelete.addEventListener("click", remove)
+}
+
+const copy = function(e) {
+  const itemText = e.target.previousElementSibling.innerText;
   itemText.select();
   document.execCommand("copy");
   console.log(itemText);
 }
 
-function deleteListener() {
+const deleteListener = function() {
   const allDeleteIcons = document.querySelectorAll('.delete');
   if (allDeleteIcons.length > 1){
     allDeleteIcons.forEach(e => e.addEventListener('click', remove));
@@ -50,13 +60,13 @@ function deleteListener() {
   };
 }
 
-function remove(e) {
+const remove = function(e) {
   e.target.parentElement.remove();
 }
 
 // add pasted item to list
 const addItem = function() {
-  const enteredText = getInput.value;
+  const enteredText = inputElement.value;
   addContent.textContent = enteredText;
 
   const contentContainer = document.createElement('div');
@@ -66,9 +76,9 @@ const addItem = function() {
   contentContainer.innerHTML = addMove.outerHTML + addContent.outerHTML + addCopy.outerHTML + addDelete.outerHTML;
 
   // add item to top of the list
-  const getChild = getList.firstChild;
-  getList.insertBefore(contentContainer, getChild);
+  const firstListItem = listElement.firstChild;
+  listElement.insertBefore(contentContainer, firstListItem);
 
-  copyListener();
-  deleteListener();
+  copyListenerTwo(addCopy);
+  deleteListenerTwo(addDelete);
 };
