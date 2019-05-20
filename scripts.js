@@ -2,6 +2,7 @@
 const inputElement = document.querySelector('input');
 const listElement = document.querySelector('.list');
 
+// create new elements and add class list
 const addMove = document.createElement('i');
 const addContent = document.createElement('div');
 const addCopy = document.createElement('i');
@@ -25,25 +26,6 @@ inputElement.addEventListener('keydown', function() {
 });
 
 // add event listeners
-const copyListener = function() {
-  const allCopyIcons = document.querySelectorAll('.copy');
-  if (allCopyIcons.length > 1){
-    allCopyIcons.forEach(e => e.addEventListener('click', copy));
-  } else {
-    allCopyIcons[0].addEventListener('click', copy)
-  };
-}
-
-const copyListenerTwo = function(addCopy) {
-    console.log(addCopy);
-    addCopy.addEventListener("click", copy)
-}
-
-const deleteListenerTwo = function(addDelete) {
-    console.log(addDelete);
-    addDelete.addEventListener("click", remove)
-}
-
 const copy = function(e) {
   const itemText = e.target.previousElementSibling.innerText;
   itemText.select();
@@ -51,18 +33,20 @@ const copy = function(e) {
   console.log(itemText);
 }
 
-const deleteListener = function() {
-  const allDeleteIcons = document.querySelectorAll('.delete');
-  if (allDeleteIcons.length > 1){
-    allDeleteIcons.forEach(e => e.addEventListener('click', remove));
-  } else {
-    allDeleteIcons[0].addEventListener('click', remove)
-  };
-}
-
 const remove = function(e) {
   e.target.parentElement.remove();
 }
+
+const copyListener = function(addCopy) {
+    console.log(addCopy);
+    addCopy.addEventListener("click", copy)
+}
+
+const deleteListener = function(addDelete) {
+    console.log(addDelete);
+    addDelete.addEventListener("click", remove)
+}
+
 
 // add pasted item to list
 const addItem = function() {
@@ -79,6 +63,6 @@ const addItem = function() {
   const firstListItem = listElement.firstChild;
   listElement.insertBefore(contentContainer, firstListItem);
 
-  copyListenerTwo(addCopy);
-  deleteListenerTwo(addDelete);
+  copyListener(addCopy);
+  deleteListener(addDelete);
 };
