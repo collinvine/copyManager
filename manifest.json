@@ -2,5 +2,15 @@
     "name": "Copy Rememberer",
     "version": "1.0",
     "description": "A list of your copied items",
+    "icons": {
+        "16": "images/16.png",
+        "24": "images/24.png",
+        "32": "images/32.png"
+    },
+    "browser_action": {
+        "default_popup": "index.html",
+        "default_icon": "images/16.png",
+        "default_title": "A robust clipboard, paste all your copies and never forget them."
+    },
     "manifest_version": 2
 }
