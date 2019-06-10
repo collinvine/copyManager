@@ -69,4 +69,38 @@ const addItem = () => {
     // add listners
     copyListener(addCopy);
     deleteListener(addDelete);
+
+    // FUNctions
+    dynamicId(contentContainer);
+    addToStorage(contentContainer, addContent);
+
 };
+
+
+
+//
+
+// add a dynamic ID, use for the key
+const dynamicId = contentContainer => {
+  const countItem = document.getElementsByClassName('item');
+  let n = countItem.length;
+  contentContainer.setAttribute("id", n);
+};
+
+// for setting local storage
+const addToStorage = (contentContainer, addContent) => {
+  let key = contentContainer.id;
+  let value = addContent.textContent;
+  localStorage.setItem(key, value);
+  console.log(localStorage.getItem(key));
+};
+
+
+// for Chrome storage
+// const addToStorage = (contentContainer, addContent) => {
+//   let key = contentContainer.id;
+//   let value = addContent.textContent;
+//   chrome.storage.local.set({key: value}, function() {
+//     console.log(`The message was saved with key ${key} and value as ${value}`);
+//   });
+// };
