@@ -1,26 +1,31 @@
-// grab elements
+// grab elements and set global variables
 const listElement = document.querySelector('.list');
 const inputElement = document.querySelector('input');
 let dynamicId = 0;
-const getAllItems = Object.values(localStorage);
+const getKeyValuePairs = Object.entries(localStorage);
 
-// set new ID constant and make it one higher than
+// set new ID constant and make it one higher than what is in local storage
 const nextId = () => {
-    const keys = Object.keys(localStorage);
-    keys.sort(function(a, b){return b-a});
-    dynamicId = keys[0];
-    dynamicId++;
+    if (localStorage.length > 0) {
+        const keys = Object.keys(localStorage);
+        const sortedKeys = keys.sort(function(a, b){return b-a});
+        dynamicId = sortedKeys[0];
+        dynamicId++;
+    } else {
+        dynamidId = 0;
+    };
 };
 
 // focus curson in input on load
 window.onload = () => {
     nextId();
-    addAllItems();
+    addKeyValuePairs();
     inputElement.focus();
     inputElement.addEventListener('keydown', function() {
         if (event.code === 'Enter' || event.code === "NumpadEnter") {
-            addItem(inputElement.value);
+            addItem(inputElement.value, dynamicId);
             addToStorage();
+            dynamicId += 1;
             inputElement.value = "";
             inputElement.focus();
         };
@@ -28,11 +33,13 @@ window.onload = () => {
 };
 
 // get storage items and add them to the list
-const addAllItems = () => {
-    getAllItems.forEach(item => {
-        addItem(item);
-    })
-}
+const addKeyValuePairs = () => {
+    const sortedKVPairs = getKeyValuePairs.sort();
+    sortedKVPairs.forEach(item => {
+        addItem(item[1], item[0]);
+        console.log(`The key is ${item[0]} and the value is ${item[1]}`);
+    });
+};
 
 // add event listeners
 const copy = event => {
@@ -61,7 +68,7 @@ const deleteListener = addDelete => {
 };
 
 // add pasted item to list
-const addItem = item => {
+const addItem = (content, id) => {
     // create new elements and add class list
     const addMove = document.createElement('i');
     const addContent = document.createElement('div');
@@ -76,7 +83,7 @@ const addItem = item => {
     contentContainer.classList.add("item");
 
     // get value of entered text
-    const enteredText = item;
+    const enteredText = content;
     addContent.textContent = enteredText;
 
     // add elements to content container div
@@ -93,9 +100,8 @@ const addItem = item => {
     copyListener(addCopy);
     deleteListener(addDelete);
 
-    // Functions
-    contentContainer.setAttribute("id", dynamicId); // THIS ISN'T WORKING! NEED TO FIX.
-    dynamicId += 1;
+    // set the ID
+    contentContainer.setAttribute("id", id);
 };
 
 
@@ -104,9 +110,7 @@ const addToStorage = () => {
   const key = listElement.firstChild.id;
   const value = inputElement.value;
   localStorage.setItem(key, value);
-  console.log("You added '" + localStorage.getItem(key) + "' to local storage.");
 };
-
 
 // for Chrome storage
 // const addToStorage = (contentContainer, addContent) => {
